@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tarjeta de Presentación - Carlos Varón</title>
+  
+  <!-- Tipografías de Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Iconos de Tabler Icons para soporte nativo de clases "ti ti-*" -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #f5f5f7;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem 1rem;
+      font-family: 'Raleway', sans-serif;
+      width: 100%;
+    }
+
+    .card {
+      width: 360px;
+      max-width: 100%;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+      background: #ececec;
+      position: relative;
+    }
+
+    .cover-area {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      overflow: visible;
+    }
+
+    .cover-placeholder {
+      width: 100%;
+      height: 100%;
+      background-image: url('https://i.postimg.cc/X7bHh0mC/FOTO-FACHADA-ALIANZA.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    /* Degradado premium y ultra suave para desvanecer la fachada con el fondo gris de la tarjeta (#ececec) */
+    .cover-placeholder::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(
+        to bottom, 
+        rgba(236, 236, 236, 0) 30%, 
+        rgba(236, 236, 236, 0.4) 65%, 
+        rgba(236, 236, 236, 0.85) 88%, 
+        #ececec 100%
+      );
+      pointer-events: none;
+    }
+
+    .avatar-wrapper {
+      position: absolute;
+      bottom: -45px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+    }
+
+    .avatar-ring {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      border: 3.5px solid #BA2507;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    }
+
+    .avatar-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .avatar-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #c9a96e, #e8c99a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      color: #5a3e1b;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+    }
+
+    .bottom-section {
+      background: #ececec;
+      padding-top: 58px;
+      padding-bottom: 0;
+    }
+
+    .info-block {
+      text-align: center;
+      padding: 0 24px 18px;
+    }
+
+    .person-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin: 0 0 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .person-title {
+      font-family: 'Raleway', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: #555;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin: 0 0 12px;
+    }
+
+    .tricolor-bar {
+      width: 80px;
+      height: 4px;
+      margin: 0 auto 12px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, #002395 0%, #002395 33%, #fff 33%, #fff 66%, #ED2939 66%, #ED2939 100%);
+    }
+
+    .person-slogan {
+      font-family: 'Raleway', sans-serif;
+      font-size: 12px;
+      font-weight: 300;
+      color: #777;
+      font-style: italic;
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .actions-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 12px;
+      padding: 16px 24px 18px;
+      background: #ececec;
+    }
+
+    .action-btn {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 9px 14px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      font-family: 'Raleway', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      transition: transform 0.15s, box-shadow 0.15s, background-color 0.15s;
+      text-decoration: none;
+      background: #c0392b;
+      color: #fff;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+      width: 100%;
+      text-align: left;
+    }
+
+    .action-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+      background: #a93226;
+    }
+
+    .action-btn .icon-circle {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 15px;
+    }
+
+    /* Ajuste de colores para los iconos */
+    .ic-call { background: #e8f5e9; color: #2e7d32; }
+    .ic-wa   { background: #e8f5e9; color: #1b5e20; }
+    .ic-ig   { background: #fce4ec; color: #c2185b; }
+    .ic-fb   { background: #e3f2fd; color: #1565c0; }
+    .ic-mail { background: #fff3e0; color: #e65100; }
+    .ic-loc  { background: #ede7f6; color: #4527a0; }
+    .ic-qr   { background: #f3e5f5; color: #6a1b9a; }
+
+    .farewell {
+      text-align: center;
+      padding: 14px 20px 18px;
+      font-family: 'Raleway', sans-serif;
+      font-size: 11.5px;
+      font-weight: 400;
+      color: #fff;
+      letter-spacing: 0.5px;
+      background: #BA2507;
+      border-top: none;
+    }
+
+    /* Modal de Código QR */
+    .qr-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    
+    .qr-modal.open { 
+      display: flex; 
+    }
+    
+    .qr-box {
+      background: #fff;
+      border-radius: 16px;
+      padding: 28px 32px;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      max-width: 90%;
+      width: 320px;
+      animation: modalFadeIn 0.25s ease-out;
+    }
+
+    .qr-img-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 15px 0;
+      min-height: 150px;
+    }
+
+    .qr-image {
+      width: 150px;
+      height: 150px;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      padding: 5px;
+      background: #fff;
+    }
+
+    @keyframes modalFadeIn {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .qr-box p {
+      font-family: 'Raleway', sans-serif;
+      font-size: 13px;
+      color: #555;
+      margin: 12px 0 0;
+    }
+
+    /* Estilos del botón de descarga de contacto */
+    .btn-download-vcf {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      margin-top: 15px;
+      padding: 10px;
+      background-color: #BA2507;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-family: 'Raleway', sans-serif;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+      transition: background-color 0.15s;
+    }
+
+    .btn-download-vcf:hover {
+      background-color: #9c1f05;
+    }
+
+    .qr-close {
+      margin-top: 10px;
+      padding: 8px 22px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      background: #fff;
+      cursor: pointer;
+      font-size: 13px;
+      font-family: 'Raleway', sans-serif;
+      color: #333;
+      transition: background-color 0.15s;
+      width: 100%;
+    }
+
+    .qr-close:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* Custom Modal Alternativo para la llamada */
+    .call-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 101;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    
+    .call-modal.open {
+      display: flex;
+    }
+
+    .call-box {
+      background: #fff;
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      width: 300px;
+    }
+
+    .call-box h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      margin-bottom: 8px;
+      color: #1a1a2e;
+    }
+
+    .call-box p {
+      font-size: 15px;
+      color: #555;
+      margin-bottom: 18px;
+      font-weight: 500;
+    }
+
+    .call-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .btn-dialog {
+      padding: 8px 16px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-family: 'Raleway', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .btn-call-confirm {
+      background: #2e7d32;
+      color: #fff;
+      text-decoration: none;
+      display: inline-block;
+      padding: 8px 16px;
+    }
+
+    .btn-call-cancel {
+      background: #f1f1f1;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card-container">
+  <div class="card">
+
+    <div class="cover-area">
+      <!-- Imagen de portada cargada de manera responsiva -->
+      <div class="cover-placeholder"></div>
+
+      <!-- Avatar de perfil -->
+      <div class="avatar-wrapper">
+        <div class="avatar-ring">
+          <!-- Imagen de perfil del Director con fallback de iniciales si llegara a fallar -->
+          <img src="https://i.postimg.cc/JznFsXMP/director.jpg" alt="Carlos Varón" class="avatar-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="avatar-placeholder" style="display: none;">CV</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bottom-section">
+      <!-- Bloque de información principal -->
+      <div class="info-block">
+        <h1 class="person-name">Carlos Varón</h1>
+        <p class="person-title">Director</p>
+        <div class="tricolor-bar"></div>
+        <p class="person-slogan">"Conectando culturas, transformando futuros"</p>
+      </div>
+
+      <!-- Cuadrícula de acciones directas -->
+      <div class="actions-grid">
+        <button class="action-btn" onclick="openCallModal('+57 311 685 0703')">
+          <span class="icon-circle ic-call"><i class="ti ti-phone" aria-hidden="true"></i></span>
+          Llamar
+        </button>
+
+        <button class="action-btn" onclick="window.open('https://wa.me/573116850703','_blank')">
+          <span class="icon-circle ic-wa"><i class="ti ti-brand-whatsapp" aria-hidden="true"></i></span>
+          WhatsApp
+        </button>
+
+        <button class="action-btn" onclick="window.open('https://www.instagram.com/afsantamarta')">
+          <span class="icon-circle ic-ig"><i class="ti ti-brand-instagram" aria-hidden="true"></i></span>
+          Instagram
+        </button>
+
+        <button class="action-btn" onclick="window.open('https://www.facebook.com/alianzafrancesa.santamarta/')">
+          <span class="icon-circle ic-fb"><i class="ti ti-brand-facebook" aria-hidden="true"></i></span>
+          Facebook
+        </button>
+
+        <button class="action-btn" onclick="window.open('mailto:carlos.varon@alianzafrancesa.edu.co')">
+          <span class="icon-circle ic-mail"><i class="ti ti-mail" aria-hidden="true"></i></span>
+          Correo
+        </button>
+
+        <button class="action-btn" onclick="window.open('https://www.google.com/maps/place/Alianza+Francesa+de+Santa+Marta/@11.2350128,-74.2060644,1119m/data=!3m2!1e3!4b1!4m6!3m5!1s0x8ef4f56372181191:0x616d14f0abbbe0db!8m2!3d11.2350128!4d-74.2034895!16s%2Fg%2F11fyzb5rgk?entry=ttu&g_ep=EgoyMDI2MDYyMy4wIKXMDSoASAFQAw%3D%3D')">
+          <span class="icon-circle ic-loc"><i class="ti ti-map-pin" aria-hidden="true"></i></span>
+          Ubicación
+        </button>
+
+        <button class="action-btn" style="grid-column: 1 / -1; justify-content: center;" onclick="openQRModal()">
+          <span class="icon-circle ic-qr"><i class="ti ti-qrcode" aria-hidden="true"></i></span>
+          Compartir / Descargar Contacto
+        </button>
+      </div>
+
+      <!-- Footer / Despedida -->
+      <div class="farewell">
+        ✦La cultura nos une, el conocimiento nos transforma✦
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal del Código QR Dinámico -->
+<div class="qr-modal" id="qrModal">
+  <div class="qr-box">
+    <div class="qr-img-container">
+      <img id="qrImage" src="" alt="Código QR de la Tarjeta" class="qr-image" />
+    </div>
+    <p>Escanea con otro celular para abrir la tarjeta de presentación en su navegador.</p>
+    
+    <!-- Botón de Acción Real para Guardar en la Agenda -->
+    <button class="btn-download-vcf" onclick="downloadVCard()">
+      <i class="ti ti-download"></i> Guardar en Contactos
+    </button>
+    
+    <button class="qr-close" onclick="document.getElementById('qrModal').classList.remove('open')">Cerrar</button>
+  </div>
+</div>
+
+<!-- Modal Alternativo para Llamar -->
+<div class="call-modal" id="callModal">
+  <div class="call-box">
+    <h3>¿Deseas realizar la llamada?</h3>
+    <p id="phoneNumberText">+57 311 685 0703</p>
+    <div class="call-actions">
+      <button class="btn-dialog btn-call-cancel" onclick="closeCallModal()">Cancelar</button>
+      <a href="tel:+573116850703" id="phoneCallLink" class="btn-dialog btn-call-confirm">Llamar ahora</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Generación y apertura del Código QR Dinámico
+  function openQRModal() {
+    let currentUrl = window.location.href;
+    
+    // Si se abre de forma local (file://), genera un QR por defecto para simular la subida
+    if (currentUrl.startsWith('file://') || currentUrl.includes('localhost') || currentUrl.includes('127.0.0.1')) {
+      currentUrl = 'https://www.alianzafrancesa.edu.co';
+    }
+    
+    const qrImage = document.getElementById('qrImage');
+    
+    // Generar la URL del QR usando una API pública rápida y segura
+    qrImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(currentUrl)}&color=1a1a2e&bgcolor=ffffff`;
+    
+    document.getElementById('qrModal').classList.add('open');
+  }
+
+  // Función nativa protegida para armar y descargar el archivo de contacto (.vcf)
+  function downloadVCard() {
+    try {
+      const vcardData = [
+        "BEGIN:VCARD",
+        "VERSION:3.0",
+        "FN:Carlos Varón",
+        "N:Varón;Carlos;;;",
+        "ORG:Alianza Francesa de Santa Marta",
+        "TITLE:Director",
+        "TEL;TYPE=CELL,VOICE;VALUE=uri:tel:+573116850703",
+        "EMAIL;TYPE=INTERNET,WORK:carlos.varon@alianzafrancesa.edu.co",
+        "URL:https://www.alianzafrancesa.edu.co",
+        "NOTE:¡La cultura nos une, el conocimiento nos transforma!",
+        "END:VCARD"
+      ].join("\n");
+
+      const blob = new Blob([vcardData], { type: "text/vcard;charset=utf-8;" });
+      const url = window.URL.createObjectURL(blob);
+      
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "Carlos_Varon.vcf";
+      document.body.appendChild(a);
+      a.click();
+      
+      setTimeout(() => {
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+      }, 100);
+    } catch (e) {
+      // Si el hosting o navegador bloquea la creación del Blob dinámico, muestra una alternativa elegante
+      alert("Para guardar el contacto, copia los siguientes datos:\n\nNombre: Carlos Varón\nCelular: +57 311 685 0703\nCorreo: carlos.varon@alianzafrancesa.edu.co");
+    }
+  }
+
+  // Control del modal de Llamadas
+  function openCallModal(phone) {
+    document.getElementById('phoneNumberText').innerText = phone;
+    document.getElementById('phoneCallLink').setAttribute('href', 'tel:' + phone.replace(/\s+/g, ''));
+    document.getElementById('callModal').classList.add('open');
+  }
+
+  function closeCallModal() {
+    document.getElementById('callModal').classList.remove('open');
+  }
+
+  // Cerrar modales haciendo clic fuera del contenido
+  window.onclick = function(event) {
+    const qrModal = document.getElementById('qrModal');
+    const callModal = document.getElementById('callModal');
+    if (event.target === qrModal) {
+      qrModal.classList.remove('open');
+    }
+    if (event.target === callModal) {
+      callModal.classList.remove('open');
+    }
+  }
+</script>
+
+</body>
+</html>
